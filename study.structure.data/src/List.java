@@ -7,6 +7,8 @@
  * ....
  */
 
+import java.util.NoSuchElementException;
+
 public class List<T> {
     // 여기에 구현
     private Node<T> start;
@@ -51,29 +53,57 @@ public class List<T> {
         throw new ArrayIndexOutOfBoundsException();
     }
 
-    public T remove(int index) {
+    public T remove(int targetIndex) {
         Node<T> currentNode = start;
-        int count = 0;
-        for (currentNode = start; currentNode != null; currentNode = currentNode.getRear(), count++) {
-            if (count == index) {
-                Node<T> front = currentNode.getFront();
-                Node<T> rear = currentNode.getRear();
-
-                // 삭제되는 앞뒤의 노드 연결하기
-                front.setRear(rear);
-                rear.setFront(front);
-
-                // 삭제되는 노드 연결 끊기
-                currentNode.setFront(null);
-                currentNode.setRear(null);
-
-                size--;
+        int index = 0;
+        for (currentNode = start; currentNode != null; currentNode = currentNode.getRear(), index++) {
+            if (index == targetIndex) {
+                if(currentNode == start) {
+                    removeFirst();
+                } else if (currentNode == end) {
+                    removeLast();
+                } else {
+                    removeMiddle(currentNode);
+                }
                 // 삭제되는 노드 value반환
                 return currentNode.getValue();
             }
         }
         throw new ArrayIndexOutOfBoundsException();
     }
+    public T remove(T value) {
+        Node<T> currentNode = start;
+        for (currentNode = start; currentNode != null; currentNode = currentNode.getRear()) {
+            if (currentNode.getValue().equals(value)) {
+                if(currentNode == start) {
+                    removeFirst();
+                } else if (currentNode == end) {
+                    removeLast();
+                } else {
+                    removeMiddle(currentNode);
+                }
+                // 삭제되는 노드 value반환
+                return currentNode.getValue();
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
+    public void removeMiddle(Node<T> currentNode) {
+        Node<T> front = currentNode.getFront();
+        Node<T> rear = currentNode.getRear();
+
+        // 삭제되는 앞뒤의 노드 연결하기
+        front.setRear(rear);
+        rear.setFront(front);
+
+        // 삭제되는 노드 연결 끊기
+        currentNode.setFront(null);
+        currentNode.setRear(null);
+
+        size--;
+    }
+
 
     public T removeFirst() {
         if (isEmpty()) {

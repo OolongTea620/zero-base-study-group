@@ -7,6 +7,10 @@ public class Main {
         testIntegerList(intList);
         testStringList(stringList);
         testDoubleList(doubleList);
+
+
+        stringList.remove("임꺽정");
+        printList(stringList);
     }
 
     private static void testDoubleList(List<Double> doubleList) {
