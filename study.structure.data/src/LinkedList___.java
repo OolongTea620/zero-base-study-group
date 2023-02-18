@@ -10,7 +10,7 @@ class Node {
     int data;
     Node next; // int 아니고 Node
 
-    Node() {} // 기본생성자 다른생성자 있으면 명시, 없으면 자동 추가.
+//    Node() {} // 기본생성자 다른생성자 있으면 명시, 없으면 자동 추가.
     Node(int data, Node next) { // 생성자(객체 초기화 메서드(편의를 위해), 반환x, 클래스와 같은이름
         this.data = data;
         this.next = next;
@@ -93,13 +93,29 @@ class LinkedList {
 
         Node cur = this.head;
         while (cur != null) {
-            System.out.println(cur.data + " ");     //데이터 출력
+            System.out.print(cur.data + " ");     //데이터 출력
             cur = cur.next;
         }
     }
 }
 public class LinkedList___ {
     public static void main(String[] args) {
+        LinkedList list = new LinkedList(); // 사용위해 객체 생성
+
+        System.out.println(list.isEmpty()); // 현재 추가된게 없어 비었느냐는 true
+        list.addData(5);
+        list.addData(3);
+        list.addData(1);
+        list.addData(4);
+        list.showData();
+
+        System.out.println();
+        list.findData(2); // 데이터 없으니 not found
+
+        list.removeData();
+        list.removeData();
+
+        list.showData();
 
     }
 }
