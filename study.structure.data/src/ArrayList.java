@@ -111,7 +111,10 @@ public class ArrayList<E> implements List<E>, Cloneable {
     public void add(int index, E value) {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException();
-        } else {
+        }
+        if(index == size){
+            addLast(value);
+        }else {
             if (size == array.length) {
                 resize();
             }
@@ -136,7 +139,7 @@ public class ArrayList<E> implements List<E>, Cloneable {
     @Override
     public E remove(int index) {
         // 특정 인덱스의 요소를 삭제
-        if (index > size || index < 0) {
+        if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
         E element = (E) array[index];
@@ -168,7 +171,7 @@ public class ArrayList<E> implements List<E>, Cloneable {
     @SuppressWarnings("unchecked")
     @Override
     public E get(int index) {
-        if (index > size || index < 0) {
+        if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
         return (E) array[index];
@@ -180,7 +183,7 @@ public class ArrayList<E> implements List<E>, Cloneable {
 
     @Override
     public void set(int index, E value) {
-        if (index > size || index < 0) {
+        if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
         array[index] = value;
