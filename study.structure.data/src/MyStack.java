@@ -1,11 +1,9 @@
-import java.util.Arrays;
-import java.util.Stack;
-
 /*
  * 자료구조명 : Stack (배열로 구현)
  * 학습 방법 : 코드 해석 (+ 수정)
- * 참고자료 URL : https://kimvampa.tistory.com/78
+ * 참고자료 URL : https://velog.io/@yeonwoo1125/Java-%EB%B0%B0%EC%97%B4%EB%A1%9C-Stack-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
  */
+
 public class MyStack {
     private String type;    // 데이터 타입
     private int capacity;   // 최대 크기
