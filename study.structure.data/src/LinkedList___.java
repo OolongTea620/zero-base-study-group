@@ -6,12 +6,13 @@
  *  - url2....
  * ....
  */
+
 class Node {
     int data;
-    Node next; // int 아니고 Node
+    Node next;
+    Node() {}
 
-//    Node() {} // 기본생성자 다른생성자 있으면 명시, 없으면 자동 추가.
-    Node(int data, Node next) { // 생성자(객체 초기화 메서드(편의를 위해), 반환x, 클래스와 같은이름
+    public Node(int data, Node next) {
         this.data = data;
         this.next = next;
     }
@@ -20,11 +21,11 @@ class Node {
 class LinkedList {
     Node head;
     LinkedList() {}
-    LinkedList(Node node) {
-        this.head = node;
+
+    public LinkedList(Node head) {
+        this.head = head;
     }
 
-    //비었는지 확인 isEmpty
     public boolean isEmpty() {
         if (this.head == null) {
             return true;
@@ -33,71 +34,68 @@ class LinkedList {
         }
     }
 
-    //마지막 데이터 추가.
     public void addData(int data) {
         if(this.isEmpty()) {
-//            this.head = data;  x    // 그냥 데이터 넣는게 아닌 노드생성자로 생성
-            this.head = new Node(data, null);  //O(1)
+            this.head = new Node(data, null);
         } else {
-            Node cur = this.head;  // cur 현재위치 체크, 변수생성
-            while(cur.next != null) {   //다음이 없을때까지 반복문
-                cur = cur.next;         //하나씩 다음으로
+            Node cur = this.head;
+            while (cur.next != null) {
+                cur = cur.next;
             }
-            cur.next = new Node(data, null);    // 마지막위치에 추가 //O(n)
+            cur.next = new Node(data, null);
         }
     }
 
-    //마지막 데이터 삭제.
-    public void removeData() {      // O(n)  , 삭제할 노드의 참조가 있다면 O(1)
-        if(this.isEmpty()) {    // 비었다면 삭제할 데이터 없으니 예외처리
+    public void removeData() {
+        if (this.isEmpty()) {
             System.out.println("List is empty");
             return;
         } else {
-            Node cur = this.head;   //처음을 현재위치로
-            Node prev = cur;     // 마지막을 삭제하면 이전노드의 next연결 끊기
-            while (cur.next != null) {      //마지막까지 노드 순회
-                prev = cur;         //이전을 현재로
-                cur = cur.next;     //현재를 다음으로 이동해서 다음이 비었으면 마지막위치
+            Node cur = this.head;
+            Node prev = cur;
+            while (cur.next != null) {
+                prev = cur;
+                cur = cur.next;         //순서유의
             }
-
-            if (cur == this.head) {  // 찾은 노드가 첫번째에 하나만 있다면
-                this.head = null;   // 첫번쨰 노드 null
+            if (cur == this.head) {
+                this.head = null;
             } else {
-                prev.next = null;   // 아니라면 끝까지 돌린 이전노드의 다음(마지막) null
+                prev.next = null;
             }
         }
     }
 
-    public void findData(int data) {  //O(n)
-        if (this.isEmpty()) {
-            System.out.println("List is empty"); // 비었다
+    public void findData(int data) {
+        if(this.isEmpty()) {
+            System.out.println("List is empty");
             return;
         } else {
             Node cur = this.head;
-            while(cur != null) {    // 현재값 순회
-                if (cur.data == data) { // 현재데이터가 찾는 데이터면 출력후 리턴
-                    System.out.println("Data is exist");
+            while (cur != null) {
+                if (cur.data == data) {
+                    System.out.println("List is exist");
                     return;
                 }
-                cur = cur.next; // 한칸씩 다음으로 이동
+                cur = cur.next;
             }
-            System.out.println("Data not found"); // 없으면 없다 출력
+            System.out.println("Data not found");
         }
     }
 
     public void showData() {
-        if (this.isEmpty()) {
-            System.out.println("List is empty"); // 비었다
+        if(this.isEmpty()) {
+            System.out.println("List is empty");
             return;
-        }
-
-        Node cur = this.head;
-        while (cur != null) {
-            System.out.print(cur.data + " ");     //데이터 출력
-            cur = cur.next;
+        } else{
+            Node cur = this.head;
+            while (cur != null) {
+                System.out.print(cur.data + " ");
+                cur = cur.next;
+            }
         }
     }
 }
+
 public class LinkedList___ {
     public static void main(String[] args) {
         LinkedList list = new LinkedList(); // 사용위해 객체 생성
