@@ -13,5 +13,8 @@ public interface StackInterface<E> {
 
     boolean isEmpty();
 
+    @SuppressWarnings("unckecked")
+    E peek();
+
     int search(Object value);
 }

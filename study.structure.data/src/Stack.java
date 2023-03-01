@@ -51,4 +51,13 @@ public class Stack<E> extends ArrayList implements StackInterface<E> {
         return size() == 0;
     }
 
+    @Override
+    public E peek() {
+        if(size() == 0){
+            throw new EmptyStackException();
+        }
+
+        return (E) array[size()-1];
+    }
+
 }
