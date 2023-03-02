@@ -1,5 +1,4 @@
 import Interface_form.Queue;
-
 import java.util.NoSuchElementException;
 
 public class LinkedListQueue<E> implements Queue<E> {
